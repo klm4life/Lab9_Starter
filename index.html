@@ -69,21 +69,25 @@
     </form>
 
     <section id="error-btns">
-      <button>Console Log</button>
-      <button>Console Error</button>
-      <button>Console Count</button>
-      <button>Console Warn</button>
-      <button>Console Assert</button>
-      <button>Console Clear</button>
-      <button>Console Dir</button>
-      <button>Console dirxml</button>
-      <button>Console Group Start</button>
-      <button>Console Group End</button>
-      <button>Console Table</button>
-      <button>Start Timer</button>
-      <button>End Timer</button>
-      <button>Console Trace</button>
-      <button>Trigger a Global Error</button>
+      <button onclick="consoleLog()">Console Log</button>
+      <button onclick="consoleError()">Console Error</button>
+      <button onclick="consoleCount()">Console Count</button>
+      <button onclick="consoleWarn()">Console Warn</button>
+      <button onclick="consoleAssert()">Console Assert</button>
+      <button onclick="consoleClear()">Console Clear</button>
+      <button onclick="consoleDir()">Console Dir</button>
+      <button onclick="consoleDirxml()">Console dirxml</button>
+      <button onclick="consoleGroupStart()">Console Group Start</button>
+      <button onclick="consoleGroupEnd()">Console Group End</button>
+      <button onclick="consoleTable()">Console Table</button>
+      <button onclick="startTimer()">Start Timer</button>
+      <button onclick="endTimer()">End Timer</button>
+      <button onclick="consoleTrace()">Console Trace</button>
+      <!-- FIGURE THIS OUT -->
+      <button>Trigger a Global Error</button> 
+      <!-- FIGURE THIS OUT -->
+      <button onclick="newError()">New Error</button>
+      <button onclick="customError()">Custom Error</button>
     </section>
   </main>
 
@@ -102,6 +106,95 @@
 
     // Start your code here
     // You may move this JS to another file if you wish
+    function consoleLog() {
+      console.log("THIS IS CONSOLE LOG");
+    }
+
+    function consoleError() {
+      console.error("THIS IS CONSOLE ERROR");
+    }
+
+    function consoleCount() {
+      console.count("THIS IS CONSOLE COUNT");
+    }
+
+    function consoleWarn() {
+      console.warn("THIS IS CONSOLE WARN");
+    }
+
+    const errorMsg = "3 is not equal to 2";
+    let number = 3
+    function consoleAssert() {
+      console.assert(number === 2, '%o', { number , errorMsg });
+    }
+
+    function consoleClear() {
+      console.clear();
+    }
+
+    function consoleDir() {
+      console.dir(errorBtns);
+    }
+
+    function consoleDirxml() {
+      console.dirxml(errorBtns);
+    }
+
+    function consoleGroupStart() {
+      console.group("THIS IS CONSOLE GROUP");
+    }
+
+    function consoleGroupEnd() {
+      console.groupEnd();
+    }
+
+    function consoleTable() {
+      console.table(["apples", "oranges", "bananas"]);
+    }
+
+    function startTimer() {
+      console.time("TIMER");
+      console.log("timer started");
+    }
+
+    function endTimer() {
+      console.timeEnd("TIMER");
+      console.log("timer ended");
+    }
+
+    function consoleTrace() {
+      function trace() {
+        console.trace();
+      }
+    trace();
+    }
+
+    consoleTrace();
+
+    function newError() {
+      let json = '{ "height": 180 }';
+      try {
+        let user = JSON.parse(json);
+        alert( user.name );
+      } catch (err) {
+        alert( err );
+      } finally {
+        console.log("New error has been triggered")
+      }
+    }
+
+    class ValidationError extends Error {
+      constructor(message) {
+      super(message); // (1)
+      this.name = "ValidationError"; // (2)
+      }
+    }
+
+    function customError() {
+      throw new ValidationError("Whoops!");
+    }
+    
+
   </script>
 </body>
 
